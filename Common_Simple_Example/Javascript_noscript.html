@@ -1,0 +1,21 @@
+<html>
+<head>
+<title> Javascript application </title>
+<body>
+<script> 
+document.write("Hello World!");
+
+x=document.getElementById("demo");  // Find the element
+x.innerHTML="Hello JavaScript!";    // Change the content
+//SO basically what is happening here is that html is creating an event that is automatically handled by javascript. First and foremost when the html page loads
+//The document parses it asynchronously until hitting the javascript application. Then it gets the ID number of that particular instance of the currently existing web page,
+//html page, and uses it to access its properties. Once it has the properties , it rewrites that what is inside. This example is actually a bit abstract because that rewriting can 
+//be anything from text to videos, to whatever. However I find it interesting that the button remains after rewriting it. It as almost as if Javascript "own" the memory context of that
+//Button after the button is declared. So can html have method handlers? 
+
+</script>
+<noscript> Your browser does not support javascript</noscript>
+<button type="button" onclick="alert('Welcome!')">Click Me!</button>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+[19:54] <Sorella> jguy101, looping is a way too general and low-level concept, it's unlikely to be what you need. You should describe what you want to do without mentioning ways of doing it
+[19:54] <jguy101> i just do not want to make 20 HTML blocks
+[19:54] == vlad_starkov [~vlad_star@109.188.125.180] has joined ##javascript
+[19:54] == Megtastique [~Megtastiq@76-10-176-194.dsl.teksavvy.com] has quit []
+[19:54] <pluma> GreenJello, I wrote literalify because I needed to bridge the gap between legacy bundles that modify window and my browserify code.
+[19:54] <Sorella> !describe @ jguy101
+[19:54] <ecmabot> jguy101: Please, provide the full scenario for your problem. e.g.: I am trying to do X, I do so by calling APIs Y (see !paste), but Z happens instead. I see the following error messages: [can't call method Y of undefined].
+[19:54] <Sorella> jguy101, oh, it might help if you provide a simple example of what you're trying to achieve too
+[19:55] <Havvy> jarek:  I tend to use closures for my data, and just return an object of functions.
+[19:55] <jguy101> i am making an horizontal block list
+[19:55] <pluma> irr, thasts the point.
+[19:55] <Havvy> So using _private doesn't work for me.
+[19:55] == mildfate [~Adium@pool-96-241-195-219.washdc.fios.verizon.net] has joined ##javascript
+[19:56] == aruna_ [~aruna@bas2-toronto09-1176444639.dsl.bell.ca] has joined ##javascript
+[19:56] <jguy101> Create boxes in Java side and not HTML
+[19:56] <jarek> Havvy: ohh, I hate the module pattern (I guess this is how it's called)
+[19:56] == macben [~macben@HSI-KBW-134-3-211-188.hsi14.kabel-badenwuerttemberg.de] has quit [Ping timeout: 252 seconds]
+[19:56] == petey [~petey@c-50-148-78-229.hsd1.il.comcast.net] has quit [Remote host closed the connection]
+[19:56] <pluma> Havvy, sounds like your successor will hate your guts
+[19:57] == petey [~petey@c-50-148-78-229.hsd1.il.comcast.net] has joined ##javascript
+[19:57] <jguy101> so you have a horizontal list of color objects. But I want to have like 1000 of them
+[19:57] <jarek> the return statement is meant to be used for function output, not for defining public API
+[19:57] <krastavac> can I assign local var as property to global object?
+[19:57] <jguy101> So I can change the color of an outside object with those objects, but just have a really really big list
+[19:57] <Havvy> pluma:  And why is that?
+[19:57] <Hello71> krastavac: yes
+[19:57] == nihilista [~nihilista@150-128.dsl.iskon.hr] has quit [Quit: sleepski...]
+[19:57] <Hello71> note that it will not be copied
+[19:57] <jguy101> is it required to have those hard coded in HTML or is it possible to do this ALL on javascript endÉ
+[19:57] <jarek> krastavac: yes, e.g. "var local = 10; window.blah = local;"
+[19:57] <jguy101> Sorella : Is that a bit clear
+[19:57] == jahnreektor [~jahnreekt@66.96.79.211] has joined ##javascript
+[19:57] <krastavac> ok
+[19:58] <jguy101> ecmbot "
+[19:58] <jguy101> *
+[19:58] <jahnreektor> !help
+[19:58] <ecmabot> jahnreektor: For help, ask your question. Be patient. Code samples should be pasted in a paste service (see !paste). Tell us 1) what you want to happen, 2) what is actually happening, and 3) any error messages you find (see !describe and !debug).
+[19:58] == mwillhite [~mwillhite@186.69.117.101] has joined ##javascript
+[19:58] == JSON_voorhees [~JSON_voor@c-76-115-14-93.hsd1.or.comcast.net] has joined ##javascript
+[19:58] <pluma> Havvy, because you assume you know how your state should be manipulated by devs
+[19:58] <Hello71> >> var global = {}; (function () { var local = 5; global.a = local; }()); global
+[19:58] <ecmabot> Hello71: (object) {Array: (function) Array, ArrayBuffer: (function) ArrayBuffer, Boolean: (function) Boolean, Date: (function) Date, Error: (function) Error, EvalError: (function) EvalError, Float32Array: (function) Float32Array, Float64Array: (function) Float64Array, Function: (function) Function, Infinity: Infinity, Int16Array: (function) Int16Array, Int32Array: (function) Int…
+[19:58] <Hello71> uh.
+[19:58] <Hello71> >> var globalVar = {}; (function () { var local = 5; globalVar.a = local; }()); globalVar
+[19:58] <ecmabot> Hello71: (object) {a: 5}
+[19:59] <jahnreektor> Hey all, whenever I square 1, I get 3.
+[19:59] <jahnreektor> console.log("Square of 1 is: " + (1^2));
+[19:59] <Havvy> pluma:  Erlang actors do the same exact thing.
+[19:59] <Hello71> I believe that is the xor operator.
+[19:59] <jahnreektor> I'm guessing i'm missing something really stupid...
+[19:59] <Hello71> >> Math.pow(1, 2)
+[19:59] <ecmabot> Hello71: (number) 1
+[19:59] <Hello71> >> Math.pow(3, 2)
+[19:59] <ecmabot> Hello71: (number) 9
+[19:59] == aruna_ [~aruna@bas2-toronto09-1176444639.dsl.bell.ca] has quit [Client Quit]
+[19:59] <Sorella> jguy101, is your list already in the right size? If you could provide an example of the inputs, and outputs in a gist it would make it easier to visualise what you want.
+[19:59] <krastavac> TypeError: ib.getMap is not a function, I passed correct object (saw with console log), somehow object isnt recognized
+[19:59] <Sorella> !paste @ jguy101
+[19:59] <ecmabot> jguy101: Show some code, but don't paste it on the channel. Sites like http://gist.github.com/ and http://bpaste.net/ are cool. You can also use http://jsbin.com , http://requirebin.com or http://jsfiddle.net/ to provide a test case we can run and help you with your problem.
+[20:00] <jguy101> i mean
+[20:00] <krastavac> infobox from google maps
+[20:00] <jahnreektor> Hello71: oh dang.
+[20:00] == MrBig [~silent@239.44.249.5.rev.vodafone.pt] has quit [Quit: MrBig]
+[20:00] == otherj [~otherj@unaffiliated/otherj] has quit []
+[20:00] == trend [~trend@cpe-23-242-200-140.socal.res.rr.com] has quit [Ping timeout: 264 seconds]
+[20:00] <jahnreektor> thanks.
+[20:00] <jguy101> My question
+[20:00] <jguy101> is
+[20:01] <pluma> Havvy, Erlang is not JS.
+[20:01] <jguy101> can I use a single div object to make several elements
+[20:01] <jguy101> i.e. box
+[20:01] <jguy101> ?
+[20:01] == petey [~petey@c-50-148-78-229.hsd1.il.comcast.net] has quit [Ping timeout: 246 seconds]
+[20:01] <jguy101> and display with js
+[20:01] <jguy101> *
+[20:02] <pluma> Havvy if Erlang jumped off a bridge, would you?
+[20:02] <Havvy> pluma:  The point of these objects are that you don't care about the implementation data.
+[20:02] <jarek> jguy101: one element = one DOM object
+[20:02] == joro [~joroci@109.64.64.34] has joined ##javascript
+[20:02] <jguy101> ahhhhh
+[20:02] <jguy101> really
+[20:02] <jguy101> no way around that?
+[20:02] <GreenJello> jguy101, you can give the div children
+[20:02] == Megtastique [~Megtastiq@76-10-176-194.dsl.teksavvy.com] has joined ##javascript
+[20:02] <jguy101> Because I want my list to be fixed, and dynamic
+
+
+
+
+div = document.createelement("div"); 
+child = document.createelement("div");  
+div.appendchild(child)
+
+
+
+
+
+
+
+
+
+
+[20:03] <jguy101> sorry dynamic, not fixed
+[20:03] <jguy101> nice nice nice
+[20:03] <jguy101> GreenJello
+[20:03] <krastavac> instead checking it, it throws exception
+[20:03] <krastavac> var mapa = ib.getMap();
+[20:03] <krastavac> if (mapa == null)
+[20:03] <jarek> jguy101: you could something like divObject.innerHTML = "<div>one</div><div>two</div>";
+[20:03] <jarek> s/could/could do
+[20:03] == boxmein [~boxmein@unaffiliated/boxmein] has joined ##javascript
+[20:03] <pandeiro> anybody experiencing weirdness with bower 1.2.8 not outputting .js files (just directory trees)?
+[20:03] <jguy101> jarek but would that "<>" part not have to be hardcoded
+[20:03] <Havvy> krastavac:  before it, write 'console.log(typeof ib.getMap)'
+[20:04] <pluma> Havvy, maybe I do. If the implementation is complex enough. I'm more concerned about libraries-as-apis obviously.
+[20:04] == dasraab [~dasraab@p57A5D1F7.dip0.t-ipconnect.de] has joined ##javascript
+[20:04] == mwillhite [~mwillhite@186.69.117.101] has quit [Quit: My MacBook has gone to sleep. ZZZzzz…]
+[20:04] <krastavac> okTypeError: ib.getMap is not a function
+[20:04] <pluma> Like that crappy jQuery library for Google Maps which hides the entire map state in a closure.
+[20:04] <jguy101> GreenJellow : Are those 3 lines of code needing to be together or are they independent
+[20:04] <jarek> jguy101: it would, but you could later modify it via DOM, e.g. divObject.children[0].classList.add('enabled')
+[20:05] <GreenJello> jguy101, the first two are independant; the third ties them together
+[20:05] <Havvy> pluma:  Does it expose the data in a useful way?
+[20:05] == acdanger_ [~aemonmalo@72-160-41-111.dyn.centurytel.net] has quit [Remote host closed the connection]
+[20:05] <jguy101> wow this is a bit above my level I have to say
+[20:05] <pluma> Havvy information hiding is fine if the scope of the implementation is sufficiently small.
+[20:05] <jguy101> but extremely helpful nonetheless, thanks a lot everyone!
+[20:06] == ljharb [~ljharb@oftn/member/ljharb] has joined ##javascript
+[20:06] <GreenJello> jguy101, can you fully explain what your goal is?
